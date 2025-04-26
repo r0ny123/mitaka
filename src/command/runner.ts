@@ -25,8 +25,8 @@ export class CommandRunner {
     ip: (searcher: Searcher, query: string): Result<string, string> => {
       // Only pass the second argument if the searcher is ONYPHE and onypheType is present
       if (searcher.name === "ONYPHE" && this.command.onypheType) {
-        // Pass the type string directly
-        return searcher.searchByIP(query);
+        // Pass the type string directly for ONYPHE
+        return searcher.searchByIP(query, this.command.onypheType);
       }
       return searcher.searchByIP(query);
     },

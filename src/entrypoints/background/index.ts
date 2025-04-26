@@ -88,7 +88,6 @@ export default defineBackground(() => {
     const id: string = info.menuItemId.toString();
     const command = v.parse(CommandSchema, JSON.parse(id));
     const options = await getOptions();
-
     const runner = new CommandRunner(command, options);
     switch (runner.command.action) {
       case "search":
