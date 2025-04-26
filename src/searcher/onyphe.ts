@@ -16,7 +16,17 @@ export class ONYPHE extends Base {
     this.name = "ONYPHE";
   }
 
-  public searchByIP(query: string) {
-    return ok(buildURL(this.baseURL, `/summary/ip/${query}`));
+  /**
+   * Search Onyphe by IP with selectable category.
+   * @param query IP address
+   * @param options { type: "datascan" | "ctiscan" } (default: datascan)
+   */
+  public searchByIP(query: string, options?: { type?: "datascan" | "ctiscan" }) {
+    const type = options?.type || "datascan";
+    if (type === "ctiscan") {
+      return ok(`https://search.onyphe.io/search?q=category%3Actiscan+ip.dest%3A${encodeURIComponent(query)}`);
+    }
+    // default: datascan
+    return ok(`https://search.onyphe.io/search?q=category%3Adatascan+ip%3A${encodeURIComponent(query)}`);
   }
 }
