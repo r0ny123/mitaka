@@ -15,7 +15,7 @@ describe("ONYPHE", function () {
       );
     });
     it("should return ctiscan URL when type is ctiscan", function () {
-      expect(subject.searchByIP(ip, { type: "ctiscan" })._unsafeUnwrap()).toBe(
+      expect(subject.searchByIP(ip, "ctiscan")._unsafeUnwrap()).toBe(
         "https://search.onyphe.io/search?q=category%3Actiscan+ip.dest%3A1.1.1.1"
       );
     });
