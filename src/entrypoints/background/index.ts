@@ -32,8 +32,8 @@ export function createContextMenus(text: string, options: OptionsType): void {
     // Special handling for Onyphe IP search: add both datascan and ctiscan
     if (name === "ONYPHE" && slot.type === "ip") {
       ([
-        { type: "datascan" as const, label: "Onyphe (datascan)" },
-        { type: "ctiscan" as const, label: "Onyphe (ctiscan)" },
+        { type: "datascan" as const, label: "datascan" },
+        { type: "ctiscan" as const, label: "ctiscan" },
       ]).forEach(({ type, label }) => {
         const command: CommandType = {
           action,
@@ -43,7 +43,8 @@ export function createContextMenus(text: string, options: OptionsType): void {
           onypheType: type,
         };
         const id = commandToID(command);
-        const title = `${commandToMessage(command)} [${label}]`;
+        // Simpler title: Search <ip> as IP on ONYPHE (datascan/ctiscan)
+        const title = `Search ${slot.query} as IP on ONYPHE (${label})`;
         chrome.contextMenus.create({ contexts, id, title }, () => {
           if (options.debug) {
             // eslint-disable-next-line no-console

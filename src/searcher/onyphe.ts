@@ -5,15 +5,8 @@ import type { SearchableType } from "~/schemas";
 import { Base } from "./base";
 
 export class ONYPHE extends Base {
-  public baseURL: string;
-  public name: string;
+  public name = "ONYPHE";
   public supportedTypes: SearchableType[] = ["ip"];
-
-  public constructor() {
-    super();
-    this.baseURL = "https://www.onyphe.io";
-    this.name = "ONYPHE";
-  }
 
   /**
    * Search Onyphe by IP with selectable category.
